@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Product Details</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .product-card {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            /* Center vertically */
+            justify-content: center;
+        }
+
+        .product-image-container {
+            width: 40%;
+            max-width: 100%;
+            height: 280px; /* Adjust the height as needed */
+            /* Ensure the image doesn't exceed the container width and height */
+            overflow: hidden;
+            padding:2%;
+            border-radius: 8px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Preserve aspect ratio and fit within the container */
+        }
+
+        .product-details {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #343a40;
+            /* Dark text color */
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            color: #6c757d;
+            /* Medium text color */
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+            /* Green color for price */
+            margin-bottom: 20px;
+        }
+
+        .btn-add-to-cart,
+        .btn-buy-now {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="product-card">
+            <div class="product-image-container">
+                <img id="productImage" class="product-image" src="" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <div class="product-title" id="productTitle"></div>
+                <div class="product-description" id="productDescription"></div>
+                <div class="product-price" id="productPrice"></div>
+                <button class="btn btn-primary btn-add-to-cart" onclick="addToCart()">Add to Cart</button>
+                <button class="btn btn-success btn-buy-now" onclick="buyNow()">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to populate product details from query parameters
+        function populateProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get("title");
+            const description = decodeURIComponent(urlParams.get("description"));
+            const image = urlParams.get("image");
+            const price = urlParams.get("price");
+
+            document.getElementById("productTitle").textContent = title;
+            document.getElementById("productDescription").textContent = description;
+            document.getElementById("productImage").src = image;
+            document.getElementById("productPrice").textContent = `$${price}`;
+        }
+
+        // Execute the function when the page is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            populateProductDetails();
+        });
+
+        function addToCart() {
+            alert("Product added to your cart.")
+        }
+
+        function buyNow() {
+            alert("Redirecting you to the checkout page.")
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
